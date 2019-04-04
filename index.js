@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000;
 
 var data = require('./caniuse.json');
 
@@ -34,11 +34,11 @@ function renderSVG(tag) {
     let width = Math.max(120,name.length * 6.5);
     return `
     <svg class="caniuseicon" width="${width}px" height="60px" viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
-    <style>text {font-family: sans-serif; font-size: 14px;} .value {font-size: 32px;} .attrib {font-style: obliqueß;}</style>
+    <style>text {font-family: sans-serif; font-size: 14px;}</style>
     <text text-anchor="middle" style="font-size: 18px;" x="50" y="18">${name}</text>
-    <text text-anchor="middle" class="value" x="50" y="47">${value}%</text>
+    <text text-anchor="middle" style="font-size: 32px;" x="50" y="47">${value}%</text>
     <text text-anchor="middle" x="50" y="62">global browser support</text>
-    <text text-anchor="middle" class="attrib" x="50" y="73"><a target="_blank" rel="noopener" href="https://caniuse.com/#feat=${tag}">caniuse.com</a></text>
+    <text text-anchor="middle" style="font-style: oblique" x="50" y="73"><a target="_blank" rel="noopener" href="https://caniuse.com/#feat=${tag}">caniuse.com</a></text>
     </svg>`
 }
 
